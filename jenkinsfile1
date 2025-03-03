@@ -16,7 +16,7 @@ pipeline {
 
         stage('Maven Build') {
             steps {
-                dir('/mnt/pipeline/Train-Ticket-Reservation-System') {
+                dir('/mnt/pipeline/Train-Ticket-Reservation-System.github') {
                     sh 'mvn clean install'
                 }
             }
