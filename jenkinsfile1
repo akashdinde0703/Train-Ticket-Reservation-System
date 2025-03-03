@@ -10,7 +10,7 @@ pipeline {
         stage('Git Clone') {
             steps {
                 sh 'rm -rf /mnt/pipeline/Train-Ticket-Reservation-System'
-                sh 'git clone https://github.com/your-repo/Train-Ticket-Reservation-System.git /mnt/pipeline/Train-Ticket-Reservation-System'
+                sh 'git clone https://github.com/akashdinde0703/Train-Ticket-Reservation-System.git'
             }
         }
 
