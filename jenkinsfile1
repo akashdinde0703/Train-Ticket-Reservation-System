@@ -9,14 +9,14 @@ pipeline {
     stages {
         stage('Git Clone') {
             steps {
-                sh 'rm -rf /mnt/pipeline/Train-Ticket-Reservation-System.github.io@tmp'
+                sh 'rm -rf /mnt/pipeline/Train-Ticket-Reservation-System.github.io'
                 sh 'git clone https://github.com/akashdinde0703/Train-Ticket-Reservation-System.git'
             }
         }
 
         stage('Maven Build') {
             steps {
-                dir('/mnt/pipeline/Train-Ticket-Reservation-System.github.io@tmp') {
+                dir('/mnt/pipeline/Train-Ticket-Reservation-System.github.io') {
                     sh 'mvn clean install'
                 }
             }
@@ -24,7 +24,7 @@ pipeline {
 
         stage('Deploy to Tomcat') {
             steps {
-                dir('/mnt/pipeline/Train-Ticket-Reservation-System.github.io@tmp/target') {
+                dir('/mnt/pipeline/Train-Ticket-Reservation-System.github.io/target') {
                     sh 'sudo cp TrainBook-1.0.0-SNAPSHOT.war /mnt/apache-tomcat-9.0.83/webapps'
                 }
             }
