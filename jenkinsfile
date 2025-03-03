@@ -16,7 +16,7 @@ pipeline {
 
         stage('Configure index.html') {
             steps {
-                sh 'echo "This is the index page of the application" > /mnt/jenkins/index.html'
+                sh 'echo "This is the index page of the final application" > /mnt/jenkins/index.html'
             }
         }
 
