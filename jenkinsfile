@@ -1,43 +1,37 @@
 pipeline {
-
-agent {
+    agent {
         node {
-label 'built-in'
-customWorkspace '/mnt/jenkins'
-
-}
-
-}
-
-satges {
-      stage ('install  httpd') {
-      steps {
-      sh 'sudo yum update -y'
-      sh 'sudo yum install httpd -y'  
+            label 'built-in'
+            customWorkspace '/mnt/jenkins'
+        }
     }
-     
+
+    stages {
+        stage('Install httpd') {
+            steps {
+                sh 'sudo yum update -y'
+                sh 'sudo yum install -y httpd'
+            }
+        }
+
+        stage('Configure index.html') {
+            steps {
+                sh 'echo "This is the index page of the application" > /mnt/jenkins/index.html'
+            }
+        }
+
+        stage('Copy index.html to HTML directory') {
+            steps {
+                sh 'sudo chmod 644 /mnt/jenkins/index.html'
+                sh 'sudo cp -p /mnt/jenkins/index.html /var/www/html/index.html'
+            }
+        }
+
+        stage('Start and Enable httpd Service') {
+            steps {
+                sh 'sudo systemctl start httpd'
+                sh 'sudo systemctl enable httpd'
+            }
+        }
     }
-  stage ('configure index.html') {
-
-steps {
-sh 'cd /mnt/jenkins'
-sh 'echo this is index page of appllication>index.html'
-}
-
-stage ( 'paste in html dir ') {
-
-steps {
-sh 'cd /mnt/jenkins'
-sh 'chmod 777 index/html'
-sh 'cp -p index.html var/www/html'
-}
-}
-
-stage ('start httpd service') {
-steps {
-sh 'sudo systemctl start httpd'
-}
-
-}
-}
 }
