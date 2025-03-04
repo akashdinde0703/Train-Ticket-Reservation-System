@@ -24,7 +24,7 @@ pipeline {
 
         stage('Deploy to Tomcat') {
             steps {
-                dir('/mnt/jenkins/Train-Ticket-Reservation-System/target) {
+                dir('/mnt/jenkins/Train-Ticket-Reservation-System/target') {
                     sh 'sudo cp TrainBook-1.0.0-SNAPSHOT.war /mnt/apache-tomcat-9.0.83/webapps'
                 }
             }
